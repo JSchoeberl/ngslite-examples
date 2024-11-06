@@ -402,15 +402,6 @@ methods for rigid multibody systems</p>
 <p><a class="reference external" href="https://link.springer.com/article/10.1007/s11044-024-09970-8">https://link.springer.com/article/10.1007/s11044-024-09970-8</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ngsolve</span>
-<span class="k">if</span> <span class="n">ngsolve</span><span class="o">.</span><span class="n">__version__</span> <span class="o">&lt;</span> <span class="s2">&quot;6.2.2405-28&quot;</span><span class="p">:</span> 
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;NGSolve too old, pls run &#39;pip3 install --upgrade --pre ngsolve&#39;&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ngsolve</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">netgen.occ</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
@@ -418,6 +409,7 @@ methods for rigid multibody systems</p>
 <span class="kn">from</span> <span class="nn">ngsolve.webgui</span> <span class="kn">import</span> <span class="n">Draw</span>
 <span class="kn">from</span> <span class="nn">ngsolve.solvers</span> <span class="kn">import</span> <span class="n">Newton</span>
 <span class="kn">from</span> <span class="nn">ngsolve.comp</span> <span class="kn">import</span> <span class="n">DifferentialSymbol</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
 <span class="c1"># ngsglobals.msg_level=10</span>
 </pre></div>
 </div>
@@ -459,7 +451,7 @@ methods for rigid multibody systems</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "42e8d172a8c743cc8368727103cd1ac3"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "cd5cd105efae49758053a8d4e351f8d2"}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -601,7 +593,7 @@ methods for rigid multibody systems</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "dc3a6954502d490297074eb38c430d36"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ad9407742f864ff89b4a9614a2536ff9"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "3c5fa05a969b4342af6fb6778f7b1361"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ced3e00fc9704c0cbc457e67dbc3d158"}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -633,7 +625,7 @@ methods for rigid multibody systems</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">-</span><span class="mf">1e-10</span><span class="p">:</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">gfold</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">vec</span>
 <span class="ne">---&gt; </span><span class="mi">10</span>     <span class="n">Newton</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">gf</span><span class="p">,</span> <span class="n">printing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="n">directsolvers</span><span class="o">.</span><span class="n">SuperLU</span><span class="p">,</span> <span class="n">maxerr</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
