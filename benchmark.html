@@ -1,0 +1,885 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Heavy top without kinematik constraints &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Heavy top without kinematik constraints</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fbenchmark.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/benchmark.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Heavy top without kinematik constraints</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-stepping">time-stepping</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="heavy-top-without-kinematik-constraints">
+<h1>Heavy top without kinematik constraints<a class="headerlink" href="#heavy-top-without-kinematik-constraints" title="Link to this heading">#</a></h1>
+<p>example from</p>
+<p>Evaluation and implementation of Lie group integration
+methods for rigid multibody systems</p>
+<p>S. Holzinger, M. Arnold, J. Gerstmayr</p>
+<p>Section 4.1</p>
+<p><a class="reference external" href="https://link.springer.com/article/10.1007/s11044-024-09970-8">https://link.springer.com/article/10.1007/s11044-024-09970-8</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ngsolve</span>
+<span class="k">if</span> <span class="n">ngsolve</span><span class="o">.</span><span class="n">__version__</span> <span class="o">&lt;</span> <span class="s2">&quot;6.2.2405-28&quot;</span><span class="p">:</span> 
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;NGSolve too old, pls run &#39;pip3 install --upgrade --pre ngsolve&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ngsolve</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">netgen.occ</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">ngsolve.comp</span> <span class="kn">import</span> <span class="n">GlobalSpace</span>
+<span class="kn">from</span> <span class="nn">ngsolve.webgui</span> <span class="kn">import</span> <span class="n">Draw</span>
+<span class="kn">from</span> <span class="nn">ngsolve.solvers</span> <span class="kn">import</span> <span class="n">Newton</span>
+<span class="kn">from</span> <span class="nn">ngsolve.comp</span> <span class="kn">import</span> <span class="n">DifferentialSymbol</span>
+<span class="c1"># ngsglobals.msg_level=10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mass</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">Jxx</span> <span class="o">=</span> <span class="n">Jzz</span> <span class="o">=</span> <span class="mf">0.234375</span>
+<span class="n">Jyy</span> <span class="o">=</span> <span class="mf">0.468750</span>  <span class="c1"># (= 2*Jxx, so its a disk)</span>
+<span class="n">omega0</span> <span class="o">=</span> <span class="n">CF</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="o">-</span><span class="mf">4.61538</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Jyy</span><span class="o">/</span><span class="n">mass</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">mass</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">)</span>     <span class="c1"># kg/ m**2</span>
+<span class="n">b</span><span class="p">,</span> <span class="n">rho</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.21650635094610965, 80.00000000000001)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">center</span> <span class="o">=</span> <span class="n">Pnt</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">disk</span> <span class="o">=</span> <span class="n">WorkPlane</span><span class="p">(</span><span class="n">Axes</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">Y</span><span class="p">))</span><span class="o">.</span><span class="n">RectangleC</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+<span class="n">shape</span> <span class="o">=</span> <span class="n">Glue</span> <span class="p">([</span><span class="n">disk</span><span class="p">,</span> <span class="n">Segment</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="p">])</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">vertices</span><span class="o">.</span><span class="n">Min</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;A&quot;</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">OCCGeometry</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">GenerateMesh</span><span class="p">(</span><span class="n">maxh</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">Draw</span> <span class="p">(</span><span class="n">mesh</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "42e8d172a8c743cc8368727103cd1ac3"}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RBshapes</span> <span class="o">=</span> <span class="n">CF</span> <span class="p">(</span> <span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                  <span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span><span class="p">,</span>
+                  <span class="o">-</span><span class="n">z</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="p">)</span><span class="o">.</span><span class="n">Reshape</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">Compile</span><span class="p">()</span> <span class="c1"># realcompile=True, wait=True)</span>
+<span class="n">RBspace</span> <span class="o">=</span> <span class="n">GlobalSpace</span> <span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">basis</span> <span class="o">=</span> <span class="n">RBshapes</span><span class="p">)</span>
+
+<span class="n">SYMshapes</span> <span class="o">=</span> <span class="n">CF</span> <span class="p">(</span> <span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                   <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">)</span><span class="o">.</span><span class="n">Reshape</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span><span class="o">.</span><span class="n">Compile</span><span class="p">()</span> <span class="c1"># realcompile=True, wait=True)</span>
+<span class="n">SYMspace</span> <span class="o">=</span> <span class="n">GlobalSpace</span> <span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">basis</span> <span class="o">=</span> <span class="n">SYMshapes</span><span class="p">)</span>
+
+<span class="n">P1shapes</span> <span class="o">=</span> <span class="n">CF</span> <span class="p">(</span> <span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                  <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span>
+                  <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+                  <span class="n">z</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span><span class="o">.</span><span class="n">Reshape</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">Compile</span><span class="p">()</span> <span class="c1"># realcompile=True, wait=True)</span>
+<span class="n">P1space</span> <span class="o">=</span> <span class="n">GlobalSpace</span> <span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">basis</span> <span class="o">=</span> <span class="n">P1shapes</span><span class="p">)</span>
+<span class="n">P1space</span><span class="o">.</span><span class="n">AddOperator</span><span class="p">(</span><span class="s2">&quot;dx&quot;</span><span class="p">,</span> <span class="n">VOL</span><span class="p">,</span> <span class="n">P1shapes</span><span class="o">.</span><span class="n">Diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">P1space</span><span class="o">.</span><span class="n">AddOperator</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">,</span> <span class="n">VOL</span><span class="p">,</span> <span class="n">P1shapes</span><span class="o">.</span><span class="n">Diff</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="n">P1space</span><span class="o">.</span><span class="n">AddOperator</span><span class="p">(</span><span class="s2">&quot;dz&quot;</span><span class="p">,</span> <span class="n">VOL</span><span class="p">,</span> <span class="n">P1shapes</span><span class="o">.</span><span class="n">Diff</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">MyGrad</span><span class="p">(</span><span class="n">gf</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">CF</span><span class="p">(</span> <span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dx&quot;</span><span class="p">),</span> <span class="n">gf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">),</span> <span class="n">gf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dz&quot;</span><span class="p">)</span> <span class="p">))</span><span class="o">.</span><span class="n">Reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">trans</span>
+<span class="k">def</span> <span class="nf">MyGradB</span><span class="p">(</span><span class="n">gf</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">CF</span><span class="p">(</span> <span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dx&quot;</span><span class="p">,</span> <span class="n">BND</span><span class="p">),</span> <span class="n">gf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">,</span> <span class="n">BND</span><span class="p">),</span> <span class="n">gf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dz&quot;</span><span class="p">,</span> <span class="n">BND</span><span class="p">)))</span><span class="o">.</span><span class="n">Reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">trans</span>
+<span class="k">def</span> <span class="nf">MyGradBB</span><span class="p">(</span><span class="n">gf</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">CF</span><span class="p">(</span> <span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dx&quot;</span><span class="p">,</span> <span class="n">BBBND</span><span class="p">),</span> <span class="n">gf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">,</span> <span class="n">BBBND</span><span class="p">),</span> <span class="n">gf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dz&quot;</span><span class="p">,</span> <span class="n">BBBND</span><span class="p">)))</span><span class="o">.</span><span class="n">Reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">trans</span>
+              
+</pre></div>
+</div>
+</div>
+</div>
+<section id="time-stepping">
+<h2>time-stepping<a class="headerlink" href="#time-stepping" title="Link to this heading">#</a></h2>
+<p>Rattle algorithm (see Hairer-Lubich-Wanner, page 246)</p>
+<p>Variables are</p>
+<ul class="simple">
+<li><p>position <span class="math notranslate nohighlight">\(q = a + B x\)</span>, an affine linear function, with constraint <span class="math notranslate nohighlight">\(B^T B = I\)</span>, i.e. <span class="math notranslate nohighlight">\(B\)</span> is orthogonal (and thus, by continuity, a rotation matrix)</p></li>
+<li><p>velocity <span class="math notranslate nohighlight">\(v = a + b \wedge x\)</span>, in body-frame</p></li>
+<li><p>momentum <span class="math notranslate nohighlight">\(p = \rho v\)</span></p></li>
+</ul>
+<p>unknowns in time-step: <span class="math notranslate nohighlight">\(q(t_{n+1}), v(t_{n+1/2}), q(t_{n+1/2}), \hat q := q(t_{n+1}) \)</span></p>
+<p>constraints: <span class="math notranslate nohighlight">\(A(t_{n+1}) = \dot A(t_{n+1}) = (0,0,0)\)</span></p>
+<p>Lagrange parameters: <span class="math notranslate nohighlight">\(f_A(t_n), f_A(t_{n+1})\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fesR</span> <span class="o">=</span> <span class="n">NumberSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+
+<span class="n">fes</span> <span class="o">=</span> <span class="n">P1space</span> <span class="o">*</span> <span class="n">RBspace</span> <span class="o">*</span> <span class="n">RBspace</span> <span class="o">*</span> <span class="n">RBspace</span> <span class="o">*</span> <span class="n">fesR</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">fesR</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">festest</span> <span class="o">=</span> <span class="n">RBspace</span> <span class="o">*</span> <span class="n">RBspace</span> <span class="o">*</span> <span class="n">RBspace</span> <span class="o">*</span> <span class="n">RBspace</span> <span class="o">*</span> <span class="n">SYMspace</span> <span class="o">*</span> <span class="n">fesR</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">fesR</span><span class="o">**</span><span class="mi">3</span>
+
+<span class="c1"># print (&quot;dimtrial =&quot;, fes.ndof, &quot;, dimtest =&quot;, festest.ndof)</span>
+<span class="n">gfold</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">fes</span><span class="p">)</span>
+<span class="n">gf</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">fes</span><span class="p">)</span>
+
+<span class="n">qold</span><span class="p">,</span> <span class="n">vold</span><span class="p">,</span> <span class="n">pold</span><span class="p">,</span> <span class="n">phatold</span><span class="p">,</span> <span class="n">fa1old</span><span class="p">,</span> <span class="n">fa2old</span> <span class="o">=</span> <span class="n">gfold</span><span class="o">.</span><span class="n">components</span>
+<span class="n">gfq</span><span class="p">,</span> <span class="n">gfv</span><span class="p">,</span> <span class="n">gfp</span><span class="p">,</span> <span class="n">gfphat</span><span class="p">,</span> <span class="n">gffa1</span><span class="p">,</span> <span class="n">gffa2</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">components</span>
+
+<span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">phat</span><span class="p">,</span> <span class="n">fa1</span><span class="p">,</span> <span class="n">fa2</span>  <span class="o">=</span> <span class="n">fes</span><span class="o">.</span><span class="n">TrialFunction</span><span class="p">()</span>
+<span class="n">dv</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">du1</span><span class="p">,</span> <span class="n">du2</span><span class="p">,</span> <span class="n">dlagsym</span><span class="p">,</span> <span class="n">da</span><span class="p">,</span> <span class="n">daprime</span> <span class="o">=</span> <span class="n">festest</span><span class="o">.</span><span class="n">TestFunction</span><span class="p">()</span>
+
+<span class="n">dvert</span> <span class="o">=</span> <span class="n">DifferentialSymbol</span><span class="p">(</span><span class="n">BBBND</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tau</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">P0</span> <span class="o">=</span> <span class="n">CF</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">PA0</span> <span class="o">=</span> <span class="n">CF</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> 
+
+<span class="n">gfphat</span><span class="o">.</span><span class="n">Set</span> <span class="p">(</span> <span class="n">rho</span><span class="o">*</span><span class="n">Cross</span> <span class="p">(</span><span class="n">omega0</span><span class="p">,</span> <span class="n">CF</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)))</span> <span class="p">,</span> <span class="n">definedon</span><span class="o">=</span><span class="n">mesh</span><span class="o">.</span><span class="n">Boundaries</span><span class="p">(</span><span class="s2">&quot;.*&quot;</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="n">force</span> <span class="o">=</span> <span class="n">CF</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">9.81</span><span class="o">*</span><span class="n">rho</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">dpointA</span> <span class="o">=</span> <span class="n">da</span>
+<span class="n">dpointAprime</span> <span class="o">=</span> <span class="n">daprime</span>
+<span class="n">qold</span><span class="o">.</span><span class="n">Set</span> <span class="p">(</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="n">Rnew</span> <span class="o">=</span> <span class="n">MyGrad</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="n">Rold</span> <span class="o">=</span> <span class="n">MyGradB</span><span class="p">(</span><span class="n">qold</span><span class="p">)</span>
+<span class="n">Rmean</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">Rold</span><span class="o">+</span><span class="n">Rnew</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">BilinearForm</span><span class="p">(</span><span class="n">trialspace</span><span class="o">=</span><span class="n">fes</span><span class="p">,</span> <span class="n">testspace</span><span class="o">=</span><span class="n">festest</span><span class="p">)</span>
+
+<span class="c1"># linear part of q is orthogonal:</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="n">InnerProduct</span> <span class="p">(</span><span class="n">Rnew</span><span class="o">.</span><span class="n">trans</span><span class="o">*</span><span class="n">Rnew</span><span class="o">-</span><span class="n">Id</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">dlagsym</span><span class="p">)</span> <span class="o">*</span> <span class="n">ds</span> 
+
+<span class="c1"># p = rho*v</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">v</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">dv</span> <span class="o">*</span> <span class="n">ds</span>
+
+<span class="c1"># dot q = v</span>
+<span class="c1"># a += (Rmean.trans * (q - qold) - tau*v) * dp  * ds</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="p">(</span><span class="n">qold</span> <span class="o">+</span> <span class="n">tau</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Rold</span><span class="o">*</span><span class="n">v</span> <span class="o">-</span> <span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="n">tau</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">Rnew</span><span class="o">*</span><span class="n">v</span><span class="p">)</span> <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">Rmean</span><span class="o">*</span><span class="n">dp</span><span class="p">)</span> <span class="o">*</span> <span class="n">ds</span>
+<span class="c1"># dot p = f</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="p">((</span><span class="n">Rnew</span><span class="o">*</span><span class="n">phat</span><span class="o">-</span><span class="n">Rmean</span><span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="o">-</span> <span class="n">tau</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">force</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">Rnew</span><span class="o">*</span><span class="n">du1</span><span class="p">)</span> <span class="o">*</span> <span class="n">ds</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="p">((</span><span class="n">Rmean</span><span class="o">*</span><span class="n">p</span><span class="o">-</span><span class="n">Rold</span><span class="o">*</span><span class="n">phatold</span><span class="p">)</span> <span class="o">-</span> <span class="n">tau</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">force</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">Rold</span><span class="o">*</span><span class="n">du2</span><span class="p">)</span> <span class="o">*</span> <span class="n">ds</span>
+
+<span class="c1"># forces from Lagrange parameters, in t_n and t_{n+t}:</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="p">(</span> <span class="p">(</span><span class="o">-</span> <span class="n">tau</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">fa1</span> <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">Rnew</span><span class="o">*</span><span class="n">du1</span><span class="p">))</span> <span class="o">*</span><span class="n">dvert</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="p">(</span> <span class="p">(</span><span class="o">-</span> <span class="n">tau</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">fa2</span> <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">MyGradBB</span><span class="p">(</span><span class="n">qold</span><span class="p">)</span><span class="o">*</span><span class="n">du2</span><span class="p">))</span> <span class="o">*</span><span class="n">dvert</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+
+<span class="c1"># constraints and velocity constraints:</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="n">P0</span><span class="p">)</span><span class="o">*</span><span class="n">dpointA</span><span class="o">*</span> <span class="n">dvert</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="p">(</span><span class="n">phat</span><span class="p">)</span><span class="o">*</span><span class="n">dpointAprime</span> <span class="o">*</span> <span class="n">dvert</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tricky to set initial conditions, since mass matrix alone is singular </span>
+<span class="c1"># gfq.Set ( (x, y, z), definedon=mesh.Boundaries(&quot;.*&quot;)  )</span>
+<span class="n">qs</span><span class="p">,</span><span class="n">dqs</span> <span class="o">=</span> <span class="n">P1space</span><span class="o">.</span><span class="n">TnT</span><span class="p">()</span>
+<span class="n">bfset</span> <span class="o">=</span> <span class="n">BilinearForm</span><span class="p">(</span><span class="n">qs</span><span class="o">*</span><span class="n">dqs</span><span class="o">*</span><span class="n">ds</span> <span class="o">+</span> <span class="n">qs</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">)</span><span class="o">*</span><span class="n">dqs</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">)</span><span class="o">*</span><span class="n">ds</span><span class="p">)</span><span class="o">.</span><span class="n">Assemble</span><span class="p">()</span>
+<span class="n">lfset</span> <span class="o">=</span> <span class="n">LinearForm</span><span class="p">(</span><span class="n">CF</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">))</span><span class="o">*</span><span class="n">dqs</span><span class="o">*</span><span class="n">ds</span> <span class="o">+</span> <span class="n">CF</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">*</span><span class="n">dqs</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">)</span><span class="o">*</span><span class="n">ds</span><span class="p">)</span><span class="o">.</span><span class="n">Assemble</span><span class="p">()</span>
+<span class="n">gfq</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">bfset</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">Inverse</span><span class="p">()</span><span class="o">*</span><span class="n">lfset</span><span class="o">.</span><span class="n">vec</span>
+
+<span class="n">scene</span> <span class="o">=</span> <span class="n">Draw</span> <span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">deformation</span><span class="o">=</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">CF</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">))),</span> <span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+
+<span class="n">tw</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;t = 0&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">tw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "dc3a6954502d490297074eb38c430d36"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ad9407742f864ff89b4a9614a2536ff9"}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">tt</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Epott</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Ekint</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Et</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">axt</span><span class="p">,</span> <span class="n">ayt</span><span class="p">,</span> <span class="n">azt</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="c1"># with TaskManager(): # pajetrace=10**9):</span>
+<span class="k">while</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">-</span><span class="mf">1e-10</span><span class="p">:</span>
+    <span class="n">gfold</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">vec</span>
+    <span class="n">Newton</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">gf</span><span class="p">,</span> <span class="n">printing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="n">directsolvers</span><span class="o">.</span><span class="n">SuperLU</span><span class="p">,</span> <span class="n">maxerr</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+    <span class="n">scene</span><span class="o">.</span><span class="n">Redraw</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">+=</span> <span class="n">tau</span>
+    <span class="n">tw</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;t = </span><span class="si">{t:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">Epot</span> <span class="o">=</span> <span class="o">-</span><span class="n">Integrate</span> <span class="p">(</span><span class="n">gfq</span><span class="o">*</span><span class="n">force</span><span class="o">*</span><span class="n">ds</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span>
+    <span class="n">Ekin</span> <span class="o">=</span> <span class="n">Integrate</span> <span class="p">(</span><span class="n">rho</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">gfv</span><span class="o">*</span><span class="n">gfv</span><span class="o">*</span><span class="n">ds</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span>
+    <span class="n">tt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">Epott</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Epot</span><span class="p">)</span>
+    <span class="n">Ekint</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ekin</span><span class="p">)</span>
+    <span class="n">axt</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">Integrate</span><span class="p">(</span><span class="n">gfq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">ds</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">ayt</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">Integrate</span><span class="p">(</span><span class="n">gfq</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">ds</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">azt</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">Integrate</span><span class="p">(</span><span class="n">gfq</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">ds</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">Et</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Epot</span><span class="o">+</span><span class="n">Ekin</span><span class="p">)</span>      
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">-</span><span class="mf">1e-10</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">gfold</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">vec</span>
+<span class="ne">---&gt; </span><span class="mi">10</span>     <span class="n">Newton</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">gf</span><span class="p">,</span> <span class="n">printing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="n">directsolvers</span><span class="o">.</span><span class="n">SuperLU</span><span class="p">,</span> <span class="n">maxerr</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">scene</span><span class="o">.</span><span class="n">Redraw</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">t</span> <span class="o">+=</span> <span class="n">tau</span>
+
+<span class="nn">File /Applications/Netgen.app/Contents/Resources/lib/python3.13/site-packages/ngsolve/nonlinearsolvers.py:147,</span> in <span class="ni">Newton</span><span class="nt">(a, u, freedofs, maxit, maxerr, inverse, dirichletvalues, dampfactor, printing, callback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span> <span class="k">if</span> <span class="n">dirichletvalues</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span>     <span class="n">solver</span><span class="o">.</span><span class="n">SetDirichlet</span><span class="p">(</span><span class="n">dirichletvalues</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">147</span> <span class="k">return</span> <span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">maxit</span><span class="o">=</span><span class="n">maxit</span><span class="p">,</span> <span class="n">maxerr</span><span class="o">=</span><span class="n">maxerr</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>                     <span class="n">dampfactor</span><span class="o">=</span><span class="n">dampfactor</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>                     <span class="n">printing</span><span class="o">=</span><span class="n">printing</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span>                     <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span>                     <span class="n">linesearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>                     <span class="n">printenergy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nn">File /Applications/Netgen.app/Contents/Resources/lib/python3.13/site-packages/netgen/__init__.py:111,</span> in <span class="ni">TimeFunction.&lt;locals&gt;.retfunc</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span> <span class="k">def</span> <span class="nf">retfunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="k">with</span> <span class="n">timer</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">111</span>         <span class="n">ret</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="k">return</span> <span class="n">ret</span>
+
+<span class="nn">File /Applications/Netgen.app/Contents/Resources/lib/python3.13/site-packages/ngsolve/nonlinearsolvers.py:39,</span> in <span class="ni">NewtonSolver.Solve</span><span class="nt">(self, maxit, maxerr, dampfactor, printing, callback, linesearch, printenergy, print_wrong_direction)</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="k">if</span> <span class="n">printenergy</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Energy: &quot;</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">Energy</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">vec</span><span class="p">))</span>
+<span class="ne">---&gt; </span><span class="mi">39</span> <span class="n">a</span><span class="o">.</span><span class="n">AssembleLinearization</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">vec</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="n">a</span><span class="o">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">vec</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span> <span class="bp">self</span><span class="o">.</span><span class="n">_UpdateInverse</span><span class="p">()</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span> <span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">Ekint</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;kinetic&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span> <span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">Epott</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;potential&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span> <span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">Et</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;energies&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span> <span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">Et</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;total energy&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span> <span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">axt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span> <span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">ayt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span> <span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">azt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="n">axt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ayt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">azt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Values at <span class="math notranslate nohighlight">\(t=1\)</span>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(\tau\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(A_x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(A_y\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(A_z\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4e-3</p></td>
+<td><p>-0.08166</p></td>
+<td><p>-0.09591</p></td>
+<td><p>-0.99203</p></td>
+</tr>
+<tr class="row-odd"><td><p>2e-3</p></td>
+<td><p>0.18651</p></td>
+<td><p>0.53720</p></td>
+<td><p>-0.82258</p></td>
+</tr>
+<tr class="row-even"><td><p>1e-3</p></td>
+<td><p>0.17802</p></td>
+<td><p>0.61715</p></td>
+<td><p>-0.76642</p></td>
+</tr>
+<tr class="row-odd"><td><p>5e-4</p></td>
+<td><p>0.17458</p></td>
+<td><p>0.63451</p></td>
+<td><p>-0.75294</p></td>
+</tr>
+<tr class="row-even"><td><p>2.5e-4</p></td>
+<td><p>0.17366</p></td>
+<td><p>0.63870</p></td>
+<td><p>-0.74960</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>with improved velocity integration:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(\tau\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(A_x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(A_y\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(A_z\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4e-3</p></td>
+<td><p>0.17592</p></td>
+<td><p>0.62806</p></td>
+<td><p>-0.75802</p></td>
+</tr>
+<tr class="row-odd"><td><p>2e-3</p></td>
+<td><p>0.17396</p></td>
+<td><p>0.63734</p></td>
+<td><p>-0.75069</p></td>
+</tr>
+<tr class="row-even"><td><p>1e-3</p></td>
+<td><p>0.173497</p></td>
+<td><p>0.639414</p></td>
+<td><p>-0.749032</p></td>
+</tr>
+<tr class="row-odd"><td><p>5e-4</p></td>
+<td><p>0.173382</p></td>
+<td><p>0.639921</p></td>
+<td><p>-0.748626</p></td>
+</tr>
+<tr class="row-even"><td><p>2.5e-4</p></td>
+<td><p>0.173353</p></td>
+<td><p>0.640047</p></td>
+<td><p>-0.748524</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="markdown-notebooks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-stepping">time-stepping</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
