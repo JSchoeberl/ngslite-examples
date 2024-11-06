@@ -7,5 +7,10 @@ It does not go in-depth into any particular topic - check out [the Jupyter Book 
 
 Check out the content pages bundled with this sample book to see more.
 
-```{tableofcontents}
-```
+
+Follow the links:
+
+https://ngsolve.github.io/jupyterlite_ngsolve/lab/?fromURL=https://jschoeberl.github.io/IntroSC/_sources/PDEs/first_example.ipynb
+
+https://ngsolve.github.io/jupyterlite_ngsolve/lab/?fromURL=https://jschoeberl.github.io/ngslite-examples/_sources/benchmark.ipynb
+
