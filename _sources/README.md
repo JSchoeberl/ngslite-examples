@@ -8,4 +8,9 @@ https://ngsolve.github.io/jupyterlite_ngsolve/lab/?fromURL=https://jschoeberl.gi
 
 https://ngsolve.github.io/jupyterlite_ngsolve/lab/?fromURL=https://jschoeberl.github.io/ngslite-examples/_sources/pde_examples//NavierStokes.ipynb
 
+https://ngsolve.github.io/jupyterlite_ngsolve/lab/?fromURL=https://jschoeberl.github.io/ngslite-examples/_sources/pde_examples//elasticity3D.ipynb
+
+https://ngsolve.github.io/jupyterlite_ngsolve/lab/?fromURL=https://jschoeberl.github.io/ngslite-examples/_sources/pde_examples//coil.ipynb
+
+
 
